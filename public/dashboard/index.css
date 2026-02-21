@@ -1,0 +1,133 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.allDivCards{
+     width: none;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(18rem, 1fr));
+    gap: 10px;
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+.solderCard{
+border: 1px solid black;
+padding: 5px;
+width: 16rem;
+height: 22rem;
+
+}
+.top-static-data{
+    width: 100%;
+    display: flex
+    ;
+    font-size: 11px;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        align-items: center;
+
+}
+ .card{
+        display: flex;
+        flex-wrap: wrap;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding: 1rem;
+    }
+.right-title{
+    width: 50%;
+    text-align: center;
+}
+.ul-number-own{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    background-color: #807f7f75;
+}
+.ul-number-tow{
+    list-style: none;
+    text-align: end;
+    font-size: 12px;
+    font-weight: 600;
+    width: 100%;
+    padding: 0;
+    margin: 0;
+    display: flex
+;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-items: flex-end;
+
+}
+.ul-number-tow li{
+    margin-bottom:5px;
+}
+
+ 
+ .span_span{
+padding: 5px;
+}
+
+.ul-number-three{
+    display: flex ;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    list-style: none;
+    gap: 14px;
+    margin: 0;
+}
+.static-word p{
+    font-size: 12px;
+    text-align: center;
+    text-decoration: underline;
+    font-weight: 600;
+    margin-bottom: 0;
+}
+.ul-number-for{
+    display: flex
+    ;
+        align-items: center;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        justify-content: flex-end;
+}
+.ul-number-for ul{
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    width: 50%;
+    font-size: 12px;
+    text-align: end;
+}
+@media print {
+    .allDivCards {
+        page-break-inside: avoid;
+    }
+
+    .solderCard {
+        page-break-inside: avoid;
+        break-inside: avoid;
+    }
+
+    /* بعد كل 12 عنصر، أعمل فاصل صفحة */
+    .solderCard:nth-of-type(12n) {
+        page-break-after: always;
+     
+    }
+
+}
+ 
