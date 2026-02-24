@@ -22,7 +22,7 @@ class RequestSoldier extends FormRequest
     public function rules(): array
     {
         $soldierId = $this->route('soldier'); // ID من الباث
-    
+
         return [
             'name' => 'required|string|max:255',
             'police_number' => 'required|string|max:50|unique:soldiers,police_number,' . $soldierId,
@@ -32,15 +32,15 @@ class RequestSoldier extends FormRequest
             'governorate' => 'nullable|string|max:255',
             'phone_number' => 'nullable|string|max:20',
             'medical_condition' => 'nullable|string|max:255',
-             'notes' => 'nullable|string',
-            'job_id'=>'required',
+            'notes' => 'nullable|string',
+            'job_id' => 'required',
             'regiment_id' => 'required|exists:regiments,id',
             'batch_id' => 'required|exists:batches,id',
-'authority_id' => 'required|exists:authorities,id',
-            'image' => 'nullable|image', // خليه nullable بدل required في حالة التحديث
+            'authority_id' => 'required|exists:authorities,id',
+            'image' => 'nullable|image|mimes:jpg,jpeg,png|max:2048', 
         ];
     }
-    
+
     /**
      * تحديد رسائل التحقق المخصصة.
      *
@@ -49,18 +49,18 @@ class RequestSoldier extends FormRequest
     public function messages()
     {
         return [
-    
-            
+
+
             'police_number.required' => 'رقم الشرطة مطلوب.',
             'name.required' => 'اسم الضابط مطلوب.',
             'national_id.required' => 'الرقم القومي مطلوب.',
             'date_of_conscription.required' => 'تاريخ التجنيد مطلوب.',
             'governorate.required' => 'المحافظة مطلوبة.',
-            'discharge_from_conscription.required' => 'مطلوب الاعفاء من التجنيد  ' ,
-             'phone_number.required' => ' مطلوب ؤقم الهاتف', 
+            'discharge_from_conscription.required' => 'مطلوب الاعفاء من التجنيد  ',
+            'phone_number.required' => ' مطلوب ؤقم الهاتف',
             'medical_condition.required' => ' مطلوب الحاله الطبيه',
             'job_id.required' => ' مطلوب الوظيفه',
-             'regiment_id.required' => 'اسم السره  مطلوب',  // إذا كان الجندي في حالة خاصة
+            'regiment_id.required' => 'اسم السره  مطلوب',  // إذا كان الجندي في حالة خاصة
             'batch_id.required' => ' مطلوب الدفعه',
             'authority_id.required' => ' مطلوب اسم الجهة',
         ];

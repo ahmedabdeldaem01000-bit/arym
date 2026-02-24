@@ -13,7 +13,7 @@ return [
     |
     */
 
-'default' => env('FILESYSTEM_DISK', 'public'),
+    'default' => env('FILESYSTEM_DISK', 'public'),
 
     /*
     |--------------------------------------------------------------------------
@@ -38,6 +38,12 @@ return [
             'report' => false,
         ],
 
+        'soldiers' => [
+            'driver' => 'local',
+            'root' => storage_path('app/public/soldiers'),
+            'url' => env('APP_URL') . '/storage/soldiers',
+            'visibility' => 'public',
+        ],
         'public' => [
             'driver' => 'local',
             'root' => storage_path('app/public'),

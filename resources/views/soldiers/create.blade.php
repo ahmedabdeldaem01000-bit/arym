@@ -65,11 +65,12 @@
 
 
               <div class="col-10">
-                @error('image')
-                  <div class="text-danger">{{ $message }}</div>
-                @enderror
+              
                 <label for="image">صورة الجندي:</label>
                 <input type="file" name="image" id="image" class="form-control">
+                  @error('image')
+                  <div class="text-danger">{{ $message }}</div>
+                @enderror
               </div>
 
             </div>
@@ -224,14 +225,14 @@
               </div>
 
             </div>
-            <!-- image -->
+         
 
 
 
 
 
 
-            <button type="submit" class="btn  btn-primary" style="margin-top: 2rem;">إضافة جندي</button>
+            <button type="submit" class="btn btn-primary" style="margin-top: 2rem;">إضافة جندي</button>
             <div style="text-align: center; padding: 1rem;">
 
             </div>

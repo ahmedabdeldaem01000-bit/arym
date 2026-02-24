@@ -5,11 +5,11 @@
 @section('content')
 <section class="content">
   <div class="container-fluid">
-    <div class="card shadow-sm">
+    <div class="shadow-sm card">
 
       <!-- العنوان وشريط الأدوات -->
       <div class="card-header d-flex justify-content-between align-items-center">
-        <h3 class="card-title mb-0">📋 بيانات الجنود</h3>
+        <h3 class="mb-0 card-title">📋 بيانات الجنود</h3>
         <div>
        
         </div>
@@ -20,7 +20,7 @@
 
         <!-- جدول البيانات -->
         <div class="table-responsive">
-          <table id="soldiersTable" class="table table-bordered table-striped text-center align-middle">
+          <table id="soldiersTable" class="table text-center align-middle table-bordered table-striped">
             <thead class="table-light">
               <tr>
                 <th><input type="checkbox" id="selectAll"></th>
@@ -53,9 +53,9 @@
                 <td>{{ $soldier->name }}</td>
                 <td>
                   @if($soldier->image)
-                    <img src="{{ asset('storage/' . $soldier->image) }}" width="70" class="rounded shadow-sm" alt="صورة">
+                  <img src="{{ asset('storage/' . $soldier->image) }}" width="70" class="rounded shadow-sm" alt="صورة">
                   @else
-                    <span class="text-muted">لا توجد صورة</span>
+                  <span class="text-muted">لا توجد صورة</span>
                   @endif
                 </td>
                 <td>{{ $soldier->police_number }}</td>
@@ -74,7 +74,7 @@
   <form action="{{ route('soldiers.statue', $soldier->id) }}" method="POST">
       @csrf
 
-      <div class="d-flex align-items-center gap-2">
+      <div class="gap-2 d-flex align-items-center">
           <select name="status" class="form-select form-select-sm" style="width:130px;">
               <option value="">-- اختر الحالة --</option>
               <option value="working" {{ $soldier->status == 'working' ? 'selected' : '' }}>يعمل</option>

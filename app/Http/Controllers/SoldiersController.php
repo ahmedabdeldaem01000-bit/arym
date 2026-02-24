@@ -34,29 +34,6 @@ $soldiers = Soldier::with(['authority', 'regiment', 'batch', 'job'])->get();
     // dd($soldiers);
     return view('soldiers-data.index', compact('soldiers'));
     }
-// soldiers.statueChang
-    // public function updateStatus(Request $request, Soldier $soldier)
-    // {
-    //     $request->validate([
-    //         'status' => 'required|in:working,leave',
-    //     ]);
-    
-    //     $soldier->update([
-    //         'status' => $request->status,
-    //     ]);
-    
-    //     return redirect()
-    //         ->back()
-    //         ->with('success', 'تم تحديث حالة الجندي بنجاح');
-    // }
-    // التحقق من الـ checkbox الذي يطلب عرض الجنود في إجازة فقط
-        // if ($request->has('status') && $request->status == 'leave') {
-        //     $query->where('status', 'leave'); // تصفية الجنود في إجازة
-        // }
-
-        // جلب الجنود بناءً على الفلاتر
-        // $soldiers = $query->get();
-    
 
     /**
      * Show the form for creating a new resource.
@@ -90,31 +67,26 @@ public function statue(Request $request, $id)
     return redirect()->back()->with('success', 'تم تحديث الحالة بنجاح');
 }
 
-     public function store(RequestSoldier $request)
-     {
-$data = $request->validated();
+public function store(RequestSoldier $request)
+{
+    $data = $request->validated();
 
-if ($request->hasFile('image')) {
-    $image = $request->file('image');
-    $filename = time() . '.' . $image->getClientOriginalExtension();
+    if ($request->hasFile('image')) {
+        // تخزين الصورة في مجلد 'soldiers' داخل القرص 'public'
+        $path = $request->file('image')->store('soldiers', 'public');
+        
+        // استبدال القيمة في مصفوفة $data بمسار الصورة الجديد
+        $data['image'] = $path;
+    }
 
-    $manager = new ImageManager(new Driver());
-    $img = $manager->read($image)->resize(300, 300);
+    // إنشاء السجل في قاعدة البيانات
+    Soldier::create($data);
 
-    $path = 'soldiers/' . $filename;
-    Storage::disk('public')->put($path, (string) $img->encode());
-
-    $data['image'] = $path;
+    return redirect()
+        ->route('soldiers.create') // يفضل التوجيه لصفحة العرض بعد النجاح
+        ->with('success', 'تم إضافة الجندي بنجاح');
 }
-
-// ✅ الآن authority_id موجود في $data
-Soldier::create($data);
-
-return redirect()->route('soldiers.create')->with('success', 'تم إضافة الجندي بنجاح');
-     }
-     
-
-
+ 
 
 
 
